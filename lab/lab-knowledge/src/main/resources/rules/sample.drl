@@ -1,0 +1,18 @@
+package rules;
+import com.rhc.lab.domain.BookingRequest;
+dialect "java"
+
+rule "Hello World"
+
+when
+	$obj:BookingRequest ()
+then
+	System.out.println($obj.toString());
+end
+
+rule "Hello Booking"
+when
+	$obj:Booking()
+then
+	System.out.println($obj.toString());
+end

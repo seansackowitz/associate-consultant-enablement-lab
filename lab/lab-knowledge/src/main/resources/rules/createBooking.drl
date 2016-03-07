@@ -1,0 +1,89 @@
+package rules;
+import com.rhc.lab.domain.BookingRequest;
+import com.rhc.lab.domain.Booking;
+import com.rhc.lab.domain.BookingStatus;
+import com.rhc.lab.domain.Venue;
+import java.util.Date;
+
+dialect "java"
+
+// XXX-Instructions
+rule "Venue revokes requests with no open date"
+	ruleflow-group "validate"
+	when
+		$obj:BookingRequest(open == null)
+	then
+		insert(BookingStatus.REVOKED);
+		
+end
+
+rule "Venue revokes requests with no close date"
+	ruleflow-group "validate"
+	when
+		$obj:BookingRequest(close == null)
+	then
+		insert(BookingStatus.REVOKED);
+end
+
+rule "Create Booking from Booking Request"
+	ruleflow-group "validate"
+	when
+		$obj:BookingRequest ()
+	then
+		Booking booking = new Booking($obj);
+		insert(booking);
+end
+
+rule "Venue revokes unsuitable Performances"
+	ruleflow-group "validate"
+	when 
+		$bookingRequest: BookingRequest()
+		$venue: Venue(accomodations not contains $bookingRequest.performer.type)
+	then
+		insert(BookingStatus.REVOKED);
+end
+
+// XXX-Instructions
+
+rule "Case 1 - Venue revokes requests for busy venues"
+	ruleflow-group "validate"
+	dialect "mvel"
+	when
+		
+		$bookingRequest: BookingRequest($venueName : venueName, $requestOpen : open, $requestClose : close)
+		Booking(
+					venueName == $venueName
+					, $requestOpen after open
+					, $requestOpen before close
+		)
+	then
+		insert(BookingStatus.REVOKED);
+end
+
+// XXX-Instructions
+rule "Case 2 - Venue revokes requests for busy venues"
+	ruleflow-group "validate"
+	dialect "mvel"
+	when
+		
+		$bookingRequest: BookingRequest($venueName : venueName, $requestOpen : open, $requestClose : close)
+		Booking(
+					venueName == $venueName
+					, $requestClose after open
+					, $requestClose before close
+		)
+	then
+		insert(BookingStatus.REVOKED);
+end
+
+// XXX-Instructions
+rule "Confirm booking if all validations pass"
+	ruleflow-group "confirm"
+	when 
+		 not (exists (BookingStatus()))
+	then
+		insert(BookingStatus.CONFIRMED);
+end
+
+
+
