@@ -2,25 +2,54 @@
 
 This collection of packets will help bootstrap your bootcamp experience by developing a working vocabulary and base set of knowledge around our most commonly used frameworks and technologies in consulting. 
 
-# First Things First...
+
+# Day 1: First Things First
 
 Set up your local development environment by following the directions in the *Development-Environment* packet. That will get you primed for the lab, as well as the rest of the packets.
 
-# Essentials
+At the end of today you should be able to run the following commands without any errors:
 
-The following technologies are essential in your day-to-day operations as a consultant. You should be intimately familiar with all of them and have no trouble with their usage. 
+```sh
+git --version
+```
 
-* Git
-* Maven
-* Servlet-Application Containers
+```sh
+java -version
+```
 
-# Highly Used Technology
+```sh
+mvn -v
+```
 
-The following technologies and frameworks will be used on almost all projects you will encounter. You will need to understand the frameworks from a high level, and come into the next week with a working vocabulary and the skills to accurately describe when/how you might use them to solve a business or technology problem.
+If you have any errors with any of these commands, please reach out to your regional facilitator.
 
-* CDI
-* EJB
-* JAX-RS
-* JMS
+
+# Day 2: Basics
+
+Git
+Maven
+
+# Day 3:
+
+Java
+* Debugging
+* Logging Frameworks
+
+Into to Java EE
+* Containers
+* Servlets
+* Web applications
+
+# Day 4:
+
+Java EE: The Sequel
 * JPA
-* RHEL-Linux
+* JAX-RS
+
+# Day 5:
+
+Java EE: Final act
+* EJB
+* CDI
+* JMS
+
