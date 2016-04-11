@@ -5,7 +5,13 @@ This collection of packets will help bootstrap your bootcamp experience by devel
 
 # Day 1: First Things First
 
-Set up your local development environment by following the directions in the *Development-Environment* packet. That will get you primed for the lab, as well as the rest of the packets.
+## Set Up
+* Git
+* Java
+* Maven
+* JBDS (Eclipse)
+* OpenShift tools
+* MongoDB
 
 At the end of today you should be able to run the following commands without any errors:
 
@@ -28,12 +34,14 @@ If you have any errors with any of these commands, please reach out to your regi
 
 Git
 Maven
+Linux (basic CLI commands)
 
 # Day 3:
 
 Java
 * Debugging
 * Logging Frameworks
+* Unit Testing
 
 Into to Java EE
 * Containers
