@@ -39,9 +39,11 @@ Linux (basic CLI commands)
 # Day 3:
 
 Java
+* Basic Java
 * Debugging
 * Logging Frameworks
 * Unit Testing
+
 
 Into to Java EE
 * Containers
@@ -57,7 +59,6 @@ Java EE: The Sequel
 # Day 5:
 
 Java EE: Final act
-* EJB
 * CDI
 * JMS
 
