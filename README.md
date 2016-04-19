@@ -1,12 +1,12 @@
-# Associate Consultant Bootcamp #
-##Prerequisites##
-###Accounts###
+# Associate Consultant Bootcamp 
+## Prerequisites
+### Accounts
 Each new hire will need to set up the following accounts to start the lab content provided in this repository.
 
 * Red Hat Access Portal Account (https://access.redhat.com)
 * An OpenShift Online Account (https://www.openshift.com/app/account/new -- use your RH email address)
 
-###Installations###
+### Installations
 Each new hire will need the following installations downloaded and unzipped prior to the start of the New Hire Bootcamp.
 
 Install				| URL
@@ -21,13 +21,13 @@ OpenShift Command Line Tools 	| [link](https://developers.openshift.com/en/manag
 MongoDB 2.6			| [link](http://docs.mongodb.org/manual/tutorial/install-mongodb-on-red-hat/) [fedora22] (http://unix.stackexchange.com/questions/208493/problem-installing-mongodb-on-fedora)
 Nodejs and NPM                    	| [link](https://github.com/joyent/node/wiki/installing-node.js-via-package-manager)
 
-##Day 1 - OpenShift Application Management##
-###Goals###
+## Day 1 - OpenShift Application Management
+### Goals
 1. Learn how to use OpenShift Online to enable quick POCs (Proof-of-Concepts)
 1. To get familiar with both the UI and CLI experience in OpenShift
 1. To get familiar with the format for the lab content in the remaining days of the Bootcamp
 
-###Instructions###
+### Instructions
 1. Run the following commands on the command line to create a new EWS (Enterprise Web Server) project called "nchlab" with large gears in OpenShift:
 ```
 	rhc app-create nchlab jbossews-2.0 -g large -s
@@ -85,18 +85,18 @@ Now let's set up a local server to test out our application. An overview of the 
 8. Start the new server by right clicking on the new server and clicking "Start"
 9. Point to localhost:8080/ in your web browser and you should have the application running on your local machine with a local database.
 
-##Day 2 - Business Rules and Process Modeling##
-###Goals###
+## Day 2 - Business Rules and Process Modeling
+### Goals
 1. To get familiar with BDD (Behavior-Driven-Development) and Buisness Requirements Gathering
 2. Learn how to use the Cucumber framework to build scenarios
 3. Learn how to write Business Rules, and touch integration endpoints in Business Processes
 
-###Note###
+### Note
 All exercises in the code are marked by the 'XXX' label, which shows up by default in the JBDS Tasks view. To expose this view in JBDS, in the top toolbar, click Window->Show View->Other..., and under "General", open "Tasks".
 
 You can also search for 'XXX' in the File Search. In JBDS, in the top toolbar, click Search->File... and search on "XXX" in the "Containing Text" field.
 
-###Instructions###
+### Instructions
 1. To check out today's repository branch, pull all of the branches from the upstream bootcamp repository into the directory you created yesterday:
 ```
 	git fetch upstream
@@ -154,11 +154,11 @@ The second goal of the day is to get some practice writing business rules in the
 
 Your application is now back to a known good state and you've completed the exercises for Day 2. If you have time left over, add some features to the lab.feature file and create some rules of your own.
 
-##Day 3 - Integrating Services with Camel##
-###Goals###
+## Day 3 - Integrating Services with Camel
+### Goals
 1. Learn how to write Camel routes for code-less integration
 
-###Instructions
+### Instructions
 1. To check out today's repository branch, pull all of the branches from the upstream bootcamp repository into the directory you created yesterday:
 ```
 	git fetch upstream
