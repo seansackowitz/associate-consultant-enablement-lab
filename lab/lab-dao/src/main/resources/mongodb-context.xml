@@ -3,17 +3,14 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mongo="http://www.springframework.org/schema/data/mongo"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="
-	http://www.springframework.org/schema/context 
-	http://www.springframework.org/schema/context/spring-context-4.1.xsd
 	http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans.xsd
-	 http://www.springframework.org/schema/data/mongo
-          http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd
-          ">
+http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo.xsd">
+
 
 	<!-- Mongo Server Configuration -->
-	<mongo:mongo host="localhost" port="27017" />
-	<mongo:db-factory dbname="nch-bootcamp-lab" />
+	<mongo:mongo-client id="localdb" host="localhost" port="27017" />
+	<mongo:db-factory dbname="nch-bootcamp-lab" mongo-ref="localdb" id="mongoDbFactory"/>
 	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
 		<constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
 	</bean>

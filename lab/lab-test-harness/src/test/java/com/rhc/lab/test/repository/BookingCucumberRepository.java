@@ -22,6 +22,10 @@ public class BookingCucumberRepository implements BookingRepository {
 
 	private Map<String, Booking> bookingRepo = new HashMap<String, Booking>();
 
+	public BookingCucumberRepository() {
+
+	}
+
 	@Override
 	public Iterable<Booking> findAll(Sort arg0) {
 		// TODO Auto-generated method stub

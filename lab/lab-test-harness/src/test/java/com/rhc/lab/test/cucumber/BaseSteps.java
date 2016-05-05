@@ -67,7 +67,7 @@ public class BaseSteps {
 		}
 
 		request.setVenueName(venueName);
-		
+
 		logger.info("Given step: " + venueName + " " + occupancy);
 	}
 
@@ -89,7 +89,7 @@ public class BaseSteps {
 		booking.setOpen(dOpen);
 		booking.setClose(dClose);
 		booking.setVenueName(venue.getName());
-		
+
 		logger.info("saving previous booking " + booking.toString());
 		bookingRepo.save(booking);
 
