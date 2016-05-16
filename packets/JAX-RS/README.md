@@ -17,9 +17,3 @@ Mkyong.com has some great JAX-RS [tutorials](http://www.mkyong.com/tutorials/jax
 6. [RESTful Java client with Apache HttpClient](http://www.mkyong.com/webservices/jax-rs/restful-java-client-with-apache-httpclient/)
 
 
-## You should know...
-
-1. What are the four most common HTTP operations? What are the semantic differences between them?
-2. What is the JAX-RS implementation used in JBoss EAP?
-3. What is the Jackson library used for?
-4. What imports do you need to add to a maven project to expose web services if it is deployed in EAP?
