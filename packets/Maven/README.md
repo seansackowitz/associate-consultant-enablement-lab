@@ -12,8 +12,3 @@ Read these two books on Maven, they are excellent resources that will help furth
   * Create a Web Application Project with Maven
   * How to generate a documentation site for your Maven based project
   * Skip unit test during Maven build
-
-# Quiz
-* What does the command ‘mvn clean install’ do?
-* How do you add a dependency to the pom.xml file?
-* What parameter should you add to skip tests when building a maven project?
