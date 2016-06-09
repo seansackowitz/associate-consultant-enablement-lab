@@ -1,7 +1,9 @@
 # Welcome to Associate Consultant Enablement!
 
 The information for the prereq week can be found in the packets module. 
-The lab material can be found in the lab module. For ease I have extracted the software install requirement for the lab up to the this README.
+
+
+The lab material can be found in the lab module. For ease I have extracted the software install requirement for the lab up to the this README.  
 Please note: The lab module is a living project and will be potentially change at any point. 
 
 ## Software Prereqs
