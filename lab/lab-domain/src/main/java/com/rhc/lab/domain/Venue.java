@@ -1,6 +1,7 @@
 package com.rhc.lab.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -25,6 +26,30 @@ public class Venue implements Serializable, Comparable<Venue> {
 	private String city;
 	private Integer capacity;
 	private List<PerformanceType> accomodations;
+
+	public Venue() {
+	}
+
+	public Venue(String name, String city, Integer capacity,
+			List<PerformanceType> accomodations) {
+		super();
+		this.name = name;
+		this.city = city;
+		this.capacity = capacity;
+		this.accomodations = accomodations;
+	}
+
+	public Venue(String name, String city, Integer capacity,
+			PerformanceType... accomodations) {
+		super();
+		this.name = name;
+		this.city = city;
+		this.capacity = capacity;
+		this.accomodations = new ArrayList<PerformanceType>();
+		for (PerformanceType type : accomodations) {
+			this.accomodations.add(type);
+		}
+	}
 
 	public String getId() {
 		return id;

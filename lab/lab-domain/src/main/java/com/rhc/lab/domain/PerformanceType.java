@@ -13,7 +13,7 @@ public enum PerformanceType
 			Serializable,
 			Comparable<PerformanceType> {
 
-	BALLET("Dance"), BAND("Band"), COMIC("Comic"), MUSICAL("Musical"), ORCHESTRA(
+	BALLET("Ballet"), BAND("Band"), COMIC("Comic"), MUSICAL("Musical"), ORCHESTRA(
 			"Orchestra"), PLAY("Play"), RALLY("Rally"), SCREENING(
 			"Film Screening"), SPORTING_EVENT("Sporting Event");
 

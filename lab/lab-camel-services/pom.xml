@@ -23,11 +23,19 @@
 			<groupId>com.rhc</groupId>
 			<artifactId>lab-dao</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.rhc</groupId>
+			<artifactId>lab-test-harness</artifactId>
+		</dependency>
 
 		<!-- Camel Dependencies -->
 		<dependency>
 			<groupId>org.apache.camel</groupId>
 			<artifactId>camel-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel</groupId>
+			<artifactId>camel-restlet</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.camel</groupId>
@@ -65,6 +73,11 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-collections4</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
+
 
 
 	</dependencies>

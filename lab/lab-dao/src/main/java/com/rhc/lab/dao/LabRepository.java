@@ -20,4 +20,5 @@ public interface LabRepository {
 	 * @return
 	 */
 	public List<Booking> findAllFutureBookings();
+
 }

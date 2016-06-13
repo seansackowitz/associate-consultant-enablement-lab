@@ -6,6 +6,8 @@ import java.util.Date;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /**
  * 
  * This class represents the persistent data model for a booking confirmed by
@@ -15,19 +17,25 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "bookings")
 public class Booking implements Serializable, Comparable<Booking> {
 
-	/**
-   * 
-   */
 	private static final long serialVersionUID = -3194593190599248428L;
 
 	@Id
 	private String id;
 	private String venueName;
 	private Performer performer;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
 	private Date open;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
 	private Date close;
 
 	public Booking() {
+	}
+
+	public Booking(String venueName, Performer performer, Date open, Date close) {
+		this.venueName = venueName;
+		this.performer = performer;
+		this.open = open;
+		this.close = close;
 	}
 
 	public Booking(BookingRequest bookingRequest) {
