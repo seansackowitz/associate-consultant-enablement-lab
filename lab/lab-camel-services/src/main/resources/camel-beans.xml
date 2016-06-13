@@ -23,7 +23,7 @@ http://drools.org/schema/kie-spring http://drools.org/schema/kie-spring.xsd ">
 
 	<!-- Base Unit Test Configuration -->
 	<beans profile="test">
-		<import resource="classpath:testRepositories.xml" />
+		<import resource="classpath*:testRepositories.xml" />
 	</beans>
 
 

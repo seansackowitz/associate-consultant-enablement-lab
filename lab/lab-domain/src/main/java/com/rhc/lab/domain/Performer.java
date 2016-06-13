@@ -18,6 +18,16 @@ public class Performer implements Serializable {
 	private String description;
 	private PerformanceType type;
 
+	public Performer() {
+	};
+
+	public Performer(String name, String description, PerformanceType type) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.type = type;
+	}
+
 	public String getName() {
 		return name;
 	}

@@ -21,6 +21,19 @@ public class BookingRequest implements Serializable {
 	private Date close;
 	private Performer performer;
 
+	public BookingRequest() {
+		super();
+	}
+
+	public BookingRequest(String venueName, Date open, Date close,
+			Performer performer) {
+		super();
+		this.venueName = venueName;
+		this.open = open;
+		this.close = close;
+		this.performer = performer;
+	}
+
 	public String getVenueName() {
 		return venueName;
 	}

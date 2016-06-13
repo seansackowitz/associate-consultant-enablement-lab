@@ -1,8 +1,6 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:camel="http://camel.apache.org/schema/spring" 
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:camel="http://camel.apache.org/schema/spring" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
 	xmlns:kie="http://drools.org/schema/kie-spring"
 	xsi:schemaLocation=" http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
@@ -10,30 +8,22 @@ http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/ac
 http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/context 
    http://www.springframework.org/schema/context/spring-context-3.0.xsd http://drools.org/schema/kie-spring http://drools.org/schema/kie-spring.xsd ">
 
+
 	<context:component-scan base-package="com.rhc" />
 
 	<!-- Spring Imports -->
 	<import resource="classpath:camel-beans.xml" />
-	
+
 
 
 	<camel:proxy id="labProxySender" serviceUrl="direct:start"
 		serviceInterface="com.rhc.lab.service.proxy.LabProxySender" />
-	
 
-	<!-- build session --><!-- set return class header --><!-- send session to statless Decision Service --><!-- process the returned response --><camelContext xmlns="http://camel.apache.org/schema/spring">
+	<bean id="labRouteBuilder" class="com.rhc.lab.route.LabRouteBuilder" />
 
-  <route>
-  	<!-- XXX-Instructions -->
-    <from uri="direct:start"/>
-    <log message="Starting our Camel Route!"/>
-    <bean ref="requestService" method="buildSession"/>
-    <setHeader headerName="responseClazz">
-      <constant>com.rhc.lab.domain.BookingResponse</constant>
-    </setHeader>
-    <bean ref="localDecisionService" method="executeForClass(${body}, bookingProcess, ${header.responseClazz})"/>
-    <bean ref="requestService" method="saveBooking"/>
-    <to uri="mock:end"/>
-  </route>
-</camelContext>
+
+	<!-- build session --><!-- set return class header --><!-- send session to statless Decision Service --><!-- process the returned response -->
+	<camelContext xmlns="http://camel.apache.org/schema/spring">
+		<routeBuilder ref="labRouteBuilder" />
+	</camelContext>
 </beans>

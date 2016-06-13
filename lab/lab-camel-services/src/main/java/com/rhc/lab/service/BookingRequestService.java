@@ -1,78 +1,22 @@
 package com.rhc.lab.service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-import javax.annotation.Resource;
-
-import org.apache.camel.Body;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
-
-import com.rhc.lab.dao.BookingRepository;
-import com.rhc.lab.dao.VenueRepository;
 import com.rhc.lab.domain.Booking;
 import com.rhc.lab.domain.BookingRequest;
 import com.rhc.lab.domain.BookingResponse;
-import com.rhc.lab.domain.BookingStatus;
 import com.rhc.lab.domain.Venue;
 
-/**
- * 
- * This service is used by Camel to execute rules and call saves in the various
- * DAO repositories.
- * 
- */
-@Service("requestService")
-public class BookingRequestService {
-
-	private static final Logger logger = LoggerFactory
-			.getLogger(BookingRequestService.class);
-	@Resource(name = "bookingDao")
-	BookingRepository bookingRepo;
-	@Resource(name = "venueDao")
-	VenueRepository venueRepo;
-
-	public BookingRequestService() {
-
-	}
-
-	public BookingRequestService(BookingRepository bookingRepo,
-			VenueRepository venueRepo) {
-		this.bookingRepo = bookingRepo;
-		this.venueRepo = venueRepo;
-	}
-
-	public List<Object> buildSession(@Body BookingRequest request)
-			throws Exception {
-
-		// collect all the relevent data for the ksession
-		List<Object> facts = collectSingleVenueForSession(request);
-		// post the facts to the body of the exchange
-		// put on the in so we do not loose the headers
-		return facts;
-	}
-
-	public boolean saveBooking(@Body BookingResponse response) {
-
-		// Attempt to implement logger
-		logger.info("Session returned: " + response.toString());
-
-		Booking booking = response.generateBooking();
-		try {
-			// attempting to save the bookings returned
-			if (response.getBookingStatus().iterator().next() == BookingStatus.CONFIRMED) {
-
-				logger.info("Attempting to save booking: " + booking.toString());
-				bookingRepo.save(booking);
-			}
-		} catch (Exception e) {
-			logger.error(e.toString());
-			return false;
-		}
-		return true;
-	}
+public interface BookingRequestService {
+	/**
+	 * Builds session that is needed for the rules session.
+	 * 
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
+	public List<Object> buildSession(BookingRequest request) throws Exception;
 
 	/**
 	 * Returns the venue mentioned in the request and all bookings associated
@@ -81,20 +25,80 @@ public class BookingRequestService {
 	 * @param request
 	 * @return
 	 */
-	public List<Object> collectSingleVenueForSession(BookingRequest request) {
+	public List<Object> collectSingleVenueForSession(BookingRequest request);
 
-		logger.info("collect venue: " + request.getVenueName());
-		List<Venue> venue = venueRepo.findByName(request.getVenueName());
+	/**
+	 * This method returns all venues in the collection
+	 * 
+	 * @return
+	 */
+	public List<Venue> getVenues();
+	/**
+	 * Get Venue by Id. Id is found in the header named id
+	 * 
+	 * @param id
+	 */
+	public Venue getVenueById(String id);
+	/**
+	 * This meathod will save a venue to the collection
+	 * 
+	 * @param id
+	 */
+	public String saveVenue(Venue venue);
+	/**
+	 * Method used to update a venue
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public String updateVenue(String id, Venue updatedVenue);
+	/**
+	 * Meathod to delete particular id
+	 * 
+	 * @param id
+	 */
+	public void deleteVenue(String id);
+	/**
+	 * This method returns all Bookings in the collection
+	 * 
+	 * @return
+	 */
+	public List<Booking> getBookings();
+	/**
+	 * Get Booking by Id. Id is found on the Camel header named id
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public Booking getBookingById(String id);
+	/**
+	 * Save new booking based on the booking response. Only saves booking if
+	 * Booking Status is confirmed
+	 * 
+	 * @param response
+	 *            - the response from the booking rules session
+	 * @return id of new Booking
+	 */
+	public String saveBooking(BookingResponse response);
+	/**
+	 * Method used to delete a particular booking
+	 * 
+	 * @param id
+	 */
+	public void deleteBooking(String id);
+	/**
+	 * Method used to update a particular booking
+	 * 
+	 * @param id
+	 *            of booking
+	 */
+	public String updateBooking(String id, Booking updatedBooking);
 
-		logger.info("venue found:" + venue);
-		List<Booking> bookings = bookingRepo.findByVenueName(request
-				.getVenueName());
-
-		List<Object> facts = new ArrayList<Object>();
-		facts.addAll(venue);
-		facts.addAll(bookings);
-		facts.add(request);
-		return facts;
-	}
+	/**
+	 * Method used to retrieve all accommodation types
+	 * 
+	 * @return
+	 */
+	public Map<String, String> getPerformanceTypes();
 
 }
