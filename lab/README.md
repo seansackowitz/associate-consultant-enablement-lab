@@ -64,9 +64,18 @@ Now that you are familiar with our basic architecture let's talk about how to se
 ```
   git clone ssh://git@gitlab.consulting.redhat.com:2222/rhtconsulting/associate-consultant-enablement.git
 ```
-* Run a maven build in order to download all dependencies into your local maven repo with the openshift profile  
-`mvn clean install -Popenshift`
-* Copy the new ROOT.war from /target/ into %TOMCAT_HOME%/webapps
+* Run a maven build in order to download all dependencies into your local maven repo  
+  * for local mongo run   
+     'mvn clean install'
+  * for the remote mongo run  
+     `mvn clean install -Popenshift`
+* Copy the new war into %TOMCAT_HOME%/webapps. You will find the war in a different location depending on profile:  
+
+ Profile | WAR Location
+ ---------|------------------------------
+ default | associate-consultant-enablement/lab/lab-web/target  
+ openshift | associate-consultant-enablement/webapps/  
+ 
 * Start tomcat by running %TOMCAT_HOME%/bin/catalina.sh with the start flag  
 `. catalina.sh start`  
 * Check http://localhost:8080/ to see if the app is running correctly
