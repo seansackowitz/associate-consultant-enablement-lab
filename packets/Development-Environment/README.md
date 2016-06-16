@@ -3,13 +3,18 @@
 
 # Java Development Kit
 
-Across different projects your requirements for Java versions will vary greatly. For the purpose of the bootcamp you will need Java 7:
+Across different projects your requirements for Java versions will vary greatly. For the purpose of the bootcamp you will need Java 7 and Java 8:
 
 There are two major implementations of the JDK, a propriatary version from oracle (Oracle JDK) and an open source version (OpenJDK). Installing OpenJDK is simple when using a RHEL/Fedora:
 
 ```shell
 [selrahal@localhost ~]$ sudo yum install -y java-1.7.0-openjdk
 ```
+
+for java 8 :  
+```shell
+[cfrieden@localhost ~]$ sudo yum install java-1.8.0-openjdk-devel
+```  
 
 To install the Oracle JDK you will need to navigate to their [site] (http://www.oracle.com/technetwork/java/javase/downloads/jdk7-downloads-1880260.html). For RHEL/Fedora you can download an RPM from oracle and install it using `yum`
 
