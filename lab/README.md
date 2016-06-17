@@ -36,8 +36,7 @@ JBoss Developer Studio 9.1			| [link](https://access.redhat.com/jbossnetwork/res
 OpenShift Command Line Tools 	| [link](https://developers.openshift.com/en/managing-client-tools.html)
 MongoDB 3.2		| [Windows, OSX, RHEL](https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/) fedora22+ (see Appendix I)
 Nodejs and NPM                    	| [link](https://github.com/joyent/node/wiki/installing-node.js-via-package-manager)
-Bower
-Run `npm install bower -g` in a command terminal
+Bower | Run `npm install bower -g` in a command terminal
 
 ## Welcome to ACE LAB!
 
