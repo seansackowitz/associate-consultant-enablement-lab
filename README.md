@@ -20,9 +20,9 @@ Each associate participating in this enablement will need make sure that they co
 ### Installations
 Each new hire will need the following installations downloaded and unzipped prior to the start of the New Hire Bootcamp.
 
-Install				| URL
-------------------------------- | ----------
-Java Development Kit 8 		| [OpenJDK](http://openjdk.java.net/install/), [Oracle JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+Install				| URL               | Command (RHEL)
+------------------------------- | ---------- | ----------
+Java Development Kit 8 		| [OpenJDK](http://openjdk.java.net/install/), [Oracle JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)    |   ```sudo yum install java-1.8.0-openjdk.x86_64``` ```sudo yum install java-1.8.0-oracle-devel.x86_64```
 Apache Maven (Latest) 			| [Maven](http://maven.apache.org/download.cgi)
 Git (latest)							| [Git](https://git-scm.com/downloads)
 Tomcat 8.0				| [Tomcat8](https://tomcat.apache.org/download-80.cgi)
