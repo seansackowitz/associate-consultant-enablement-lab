@@ -10,10 +10,11 @@ Links
 
 Labs
 ----
-* https://github.com/jboss-developer/jboss-eap-quickstarts/tree/7.0.x-develop/ejb-in-war
-* https://github.com/jboss-developer/jboss-eap-quickstarts/tree/7.0.x-develop/ejb-throws-exception
-* https://github.com/jboss-developer/jboss-eap-quickstarts/tree/7.0.x-develop/ejb-asynchronous
-* https://github.com/jboss-developer/jboss-eap-quickstarts/tree/7.0.x-develop/ejb-timer
-* https://github.com/jboss-developer/jboss-eap-quickstarts/tree/7.0.x-develop/ejb-in-ear
+* https://github.com/jboss-developer/jboss-eap-quickstarts/tree/7.1.x-develop/ejb-in-war
+* https://github.com/jboss-developer/jboss-eap-quickstarts/tree/7.1.x-develop/ejb-throws-exception
+* https://github.com/jboss-developer/jboss-eap-quickstarts/tree/7.1.x-develop/ejb-asynchronous
+* https://github.com/jboss-developer/jboss-eap-quickstarts/tree/7.1.x-develop/ejb-timer
+* https://github.com/jboss-developer/jboss-eap-quickstarts/tree/7.1.x-develop/ejb-in-ear
+
 Quiz
 ----
