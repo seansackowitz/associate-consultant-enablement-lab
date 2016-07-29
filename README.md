@@ -61,3 +61,12 @@ build environment:
 service mongod start
 ```
 If the above command fails, try navigating to the ```/tmp ``` directory and removing the mongodb-27017 file with ```rm mongodb27017.sock``` this seems to fix the issue on some systems
+
+
+## Recommended Reading
+
+If you find yourself with some free time in the next several weeks be sure to pick up one (or more) of these books for a read. They are very helpful and relevant to your jobs:
+
+* Crucial Conversations
+* The Phoenix Project
+* The Open Organization
