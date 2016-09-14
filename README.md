@@ -1,6 +1,6 @@
 # Welcome to Associate Consultant Enablement!
 
-The information for the prereq week can be found in the packets module. 
+The information for the prereq week can be found in the packets module. [here](https://gitlab.consulting.redhat.com/rhtconsulting/associate-consultant-enablement/tree/master/packets)
 
 
 The lab material can be found in the lab module. For ease I have extracted the software install requirement for the lab up to the this README.  
