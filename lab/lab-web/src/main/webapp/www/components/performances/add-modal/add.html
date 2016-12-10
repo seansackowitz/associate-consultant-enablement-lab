@@ -22,41 +22,41 @@
         <label>Description</label>
         <textarea class="form-control" ng-model="add.performance.performer.description"></textarea>
 
-      <div>
-        <label>Open Date</label>
-        <p class="input-group">
-          <input class="form-control" type="text"
-          uib-datepicker-popup="shortDate"
-          ng-model="add.performance.open"
-          is-open="add.openDatePop.opened"
-          datepicker-options="add.openDatePop.dateOptions"
-          popup-placement="bottom-right"/>
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-default"
-              ng-click="add.openDatePop.open()">
-              <i class="glyphicon glyphicon-calendar"></i></button>
-          </span>
-        </p>
-      </div>
 
-      <div>
-        <label>Close Date</label>
-        <p class="input-group">
-          <input class="form-control" type="text"
-            uib-datepicker-popup="shortDate"
-            ng-model="add.performance.close"
-            is-open="add.closeDatePop.opened"
-            datepicker-options="add.closeDatePop.dateOptions"
-            popup-placement="bottom-right"/>
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-default"
-              ng-click="add.closeDatePop.open()">
-              <i class="glyphicon glyphicon-calendar"></i></button>
-          </span>
-        </p>
-      </div>
+        <div class="form-group">
+            <label>Open Date and Time</label>
+              <p class="input-group">
+                <input type="text" class="form-control"
+                datetime-picker="MM/dd/yyyy HH:mm"
+                ng-model="add.performance.open"
+                is-open="add.openDatePop.opened"
+                datepicker-options="add.openDatePop.dateOptions"/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default"
+                    ng-click="add.openDatePop.open()">
+                    <i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </p>
+            </div>
 
-    </div>
+        <div class="form-group">
+            <label>Close Date and Time</label>
+              <p class="input-group">
+                <input type="text" class="form-control"
+                datetime-picker="MM/dd/yyyy HH:mm"
+                ng-model="add.performance.close"
+                is-open="add.closeDatePop.opened"
+                datepicker-options="add.closeDatePop.dateOptions"/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default"
+                    ng-click="add.closeDatePop.open()">
+                    <i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </p>
+            </div>
+
+
+
     <div class="modal-footer">
         <button class="btn btn-lg btn-primary" type="submit" ng-click="add.request()">Request</button>
         <button class="btn btn-lg btn-warning" type="cancel" ng-click="add.cancel()">Cancel</button>
@@ -65,4 +65,5 @@
       <strong>Invalid!</strong> Must fill out all fields exept description.
     </div>
   </form>
+</div>
 </div>

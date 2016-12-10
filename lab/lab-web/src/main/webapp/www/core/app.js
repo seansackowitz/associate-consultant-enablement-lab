@@ -6,6 +6,7 @@ angular.module('aceConcerts', [
     'ngResource',
     'ui.router',
     'ui.bootstrap',
+    'ui.bootstrap.datetimepicker',
     'ui.multiselect',
     'angularSpinner',
     'aceConcerts.sections.login',
