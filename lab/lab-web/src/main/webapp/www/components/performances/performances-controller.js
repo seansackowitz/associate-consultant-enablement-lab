@@ -14,6 +14,19 @@ angular.module('aceConcerts.components.performances.controller', [
 
     vm.bookings = [];
 
+    var perf;
+
+    function getBookingVal() {
+      if (0 in perf.$$state.value) {
+        $log.log("Booking was accepted.")
+        vm.openBookingSuccessModal();
+      }
+      else {
+        $log.log("Booking was not accepted.")
+        vm.openBookingFailureModal();
+      }
+    };
+
     activate();
 
     $interval(activate, 3000);
@@ -23,7 +36,7 @@ angular.module('aceConcerts.components.performances.controller', [
         .then(function(bookings) {
           vm.bookings = bookings;
         });
-    }
+    };
 
     vm.openAddBookingModal = function() {
       var modalInstance = $uibModal.open(
@@ -44,12 +57,41 @@ angular.module('aceConcerts.components.performances.controller', [
 
     function addBooking(newPerformance) {
       usSpinnerService.spin('spinner-book');
-      return concertService.addBooking(newPerformance)
+
+      perf = concertService.addBooking(newPerformance);
+
+      return perf
         .then(activate)
         .then(function() {
           return usSpinnerService.stop('spinner-book');
-        });
-    }
+        })
+        .then(getBookingVal);
+    };
+
+
+    vm.openBookingSuccessModal = function () {
+      var modalInstanceSuccess = $uibModal.open(
+        {
+          animation: true,
+          templateUrl: 'www/components/performances/success-modal/success.html',
+          controller: 'SuccessPerformanceCtrl as success',
+          size: 'lg'
+        }
+      )
+    };
+
+      vm.openBookingFailureModal = function () {
+        var modalInstanceFailure = $uibModal.open(
+          {
+            animation: true,
+            templateUrl: 'www/components/performances/failure-modal/failure.html',
+            controller: 'FailurePerformanceCtrl as failure',
+            size: 'lg'
+          }
+        )
+      };
+
+
 
     console.log('Performances Controller Created');
 
