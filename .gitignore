@@ -16,3 +16,5 @@ hs_err_pid*
 .classpath
 target/
 test-output/
+webapps/.niogit
+webapps/.index
