@@ -191,6 +191,7 @@ public class CamelServicesTest {
 	}
 
 	@Test
+	@Ignore
 	public void shouldSaveBooking() throws InterruptedException {
 		// given a saved venue
 		venue1 = venueDao.save(venue1);
