@@ -12,12 +12,17 @@ angular.module('aceConcerts.sections.login.controller', [
       vm.email = 'shadowMan@redhat.com';
       vm.password = 123456;
 
+      vm.showAlert = false;
+
       vm.submit = function() {
-        if (vm.email && vm.password) {
+        if (vm.email == 'shadowMan@redhat.com' && vm.password == 123456) {
           userService.login(vm.email, vm.password)
           .then(function() {
             return $state.go('home');
           });
+        }
+        else {
+            vm.showAlert = true;
         }
       };
 
