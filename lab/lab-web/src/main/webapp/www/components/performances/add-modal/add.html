@@ -13,15 +13,15 @@
         <label>Performer Name</label>
         <input class="form-control" ng-model="add.performance.performer.name">
 
-
         <label>Performance Type</label>
         <select class="form-control" ng-model="add.selectedType" ng-change="add.setPerformanceType()"
           ng-options="accomodation as accomodation.label for accomodation in add.accomodations"></select>
 
-
         <label>Description</label>
         <textarea class="form-control" ng-model="add.performance.performer.description"></textarea>
 
+        <label>Email</label>
+        <input type="email" class="form-control" ng-model="add.performance.email">
 
         <div class="form-group">
             <label>Open Date and Time</label>

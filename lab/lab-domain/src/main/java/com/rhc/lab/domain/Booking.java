@@ -23,6 +23,7 @@ public class Booking implements Serializable, Comparable<Booking> {
 	private String id;
 	private String venueName;
 	private Performer performer;
+	private String email;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
 	private Date open;
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
@@ -31,9 +32,11 @@ public class Booking implements Serializable, Comparable<Booking> {
 	public Booking() {
 	}
 
-	public Booking(String venueName, Performer performer, Date open, Date close) {
+	public Booking(String venueName, Performer performer, String email,
+			Date open, Date close) {
 		this.venueName = venueName;
 		this.performer = performer;
+		this.email = email;
 		this.open = open;
 		this.close = close;
 	}
@@ -41,6 +44,7 @@ public class Booking implements Serializable, Comparable<Booking> {
 	public Booking(BookingRequest bookingRequest) {
 		this.venueName = bookingRequest.getVenueName();
 		this.performer = bookingRequest.getPerformer();
+		this.email = bookingRequest.getEmail();
 		this.open = bookingRequest.getOpen();
 		this.close = bookingRequest.getClose();
 	}
@@ -59,6 +63,14 @@ public class Booking implements Serializable, Comparable<Booking> {
 
 	public void setVenueName(String venueName) {
 		this.venueName = venueName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public Date getOpen() {
@@ -105,8 +117,8 @@ public class Booking implements Serializable, Comparable<Booking> {
 	@Override
 	public String toString() {
 		return "Booking [id=" + id + ", venueName=" + venueName
-				+ ", performer=" + performer + ", open=" + open + ", close="
-				+ close + "]";
+				+ ", performer=" + performer + ", email=" + email + ", open="
+				+ open + ", close=" + close + "]";
 	}
 
 	@Override
@@ -120,6 +132,8 @@ public class Booking implements Serializable, Comparable<Booking> {
 				+ ((performer == null) ? 0 : performer.hashCode());
 		result = prime * result
 				+ ((venueName == null) ? 0 : venueName.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+
 		return result;
 	}
 
@@ -141,6 +155,11 @@ public class Booking implements Serializable, Comparable<Booking> {
 			if (other.open != null)
 				return false;
 		} else if (!open.equals(other.open))
+			return false;
+		if (email == null) {
+			if (other.email != null)
+				return false;
+		} else if (!email.equals(other.email))
 			return false;
 		if (performer == null) {
 			if (other.performer != null)
