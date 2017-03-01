@@ -14,15 +14,15 @@
 		<param-value>classpath:camel-context.xml</param-value>
 	</context-param>
 
-	<context-param>
-     <param-name>spring.profiles.active</param-name>
-     <param-value>openshift</param-value>
-	</context-param>
-
 	<!-- <context-param>
      <param-name>spring.profiles.active</param-name>
-     <param-value>default</param-value>
+     <param-value>openshift</param-value>
 	</context-param> -->
+
+	<context-param>
+     <param-name>spring.profiles.active</param-name>
+     <param-value>default</param-value>
+	</context-param>
 
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener
