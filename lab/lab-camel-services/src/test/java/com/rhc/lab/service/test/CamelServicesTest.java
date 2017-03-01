@@ -35,11 +35,14 @@ import org.springframework.test.context.ContextConfiguration;
 import com.rhc.lab.dao.BookingRepository;
 import com.rhc.lab.dao.LabRepository;
 import com.rhc.lab.dao.VenueRepository;
+import com.rhc.lab.dao.LoginRepository;
 import com.rhc.lab.domain.Booking;
 import com.rhc.lab.domain.BookingRequest;
 import com.rhc.lab.domain.PerformanceType;
 import com.rhc.lab.domain.Performer;
 import com.rhc.lab.domain.Venue;
+import com.rhc.lab.domain.Login;
+
 
 @SuppressWarnings("deprecation")
 @RunWith(CamelSpringJUnit4ClassRunner.class)
@@ -60,9 +63,12 @@ public class CamelServicesTest {
 	VenueRepository venueDao;
 	@Resource(name = "labDao")
 	LabRepository labDao;
+	@Resource(name = "loginDao")
+	LoginRepository loginDao;
 
 	@EndpointInject(uri = "mock:end")
 	protected MockEndpoint mockEnd;
+
 
 	@Produce(uri = "direct:getBookings")
 	protected ProducerTemplate template1;
@@ -88,6 +94,9 @@ public class CamelServicesTest {
 	Booking book1 = new Booking(request1);
 	Booking book2 = new Booking(request2);
 
+//	Login login1 = new Login("rhc@redhat.com", "123");
+	Login login2 = new Login("shadowMan@redhat.com", "123456");
+	//
 	RouteBuilder testRoutes;
 
 	@Before
@@ -95,6 +104,22 @@ public class CamelServicesTest {
 		bookingDao.deleteAll();
 		venueDao.deleteAll();
 		MockEndpoint.resetMocks(camelContext);
+	}
+
+	@Test
+	public void shouldAcceptValidLogin() throws InterruptedException{
+		// Given a valid email and password
+		mockEnd.expectedMessageCount(1);
+
+		// when I check my login
+		template1.sendBody("direct:login", login2);
+
+		// then I expect a success status to return
+		mockEnd.assertIsSatisfied();
+		Exchange exchange = mockEnd.getExchanges().get(0);
+		Message message = exchange.getIn();
+		String loginEmail = message.getBody(String.class);
+		Assert.assertEquals("Did return expect values", "shadowMan@redhat.com", loginEmail);
 	}
 
 	@Test

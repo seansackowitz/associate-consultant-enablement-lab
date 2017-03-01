@@ -9,14 +9,18 @@ import org.apache.camel.model.rest.RestParamType;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.rhc.lab.domain.BookingRequest;
+import com.rhc.lab.domain.Login;
 import com.rhc.lab.domain.Venue;
 import com.rhc.lab.kie.service.impl.LocalStatelessDecisionService;
 import com.rhc.lab.service.BookingRequestService;
+import com.rhc.lab.service.LoginService;
 
 public class LabRouteBuilder extends RouteBuilder {
 
 	@Autowired
 	BookingRequestService requestService;
+	LoginService loginRequestService;
+
 	@Resource(name = "localDecisionService")
 	LocalStatelessDecisionService localDecisionService;
 
@@ -26,6 +30,25 @@ public class LabRouteBuilder extends RouteBuilder {
 		restConfiguration().component("restlet").host("localhost").port("8081")
 				.enableCORS(true).bindingMode(RestBindingMode.json);
 
+		rest("/login")
+				.verb("options")
+				.route()
+				.setHeader("Access-Control-Allow-Origin", constant("*"))
+				.setHeader(
+						"Access-Control-Allow-Methods",
+						constant("GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS, CONNECT, PATCH"))
+				.setHeader(
+						"Access-Control-Allow-Headers",
+						constant("Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers"))
+				.setHeader("Allow", constant("GET, OPTIONS, POST, PATCH"));
+
+		rest("/login").post().consumes("application/json").type(Login.class)
+				.produces("application/json").to("direct:login");
+		// get().param().type(RestParamType.query).name("email")
+		// 	.endParam().param().type(RestParamType.query).name("password")
+		// 	.consumes("application/json").type(Login.class)
+		// 	.produces("application/json").to("direct:newLogin");
+		//
 		rest("/bookings")
 				.verb("options")
 				.route()
@@ -100,6 +123,11 @@ public class LabRouteBuilder extends RouteBuilder {
 		from("direct:getBookingById")
 				.log(LoggingLevel.INFO, "Get Booking by Id id : ${header.id}")
 				.bean(requestService, "getBookingById").to("mock:end");
+
+		// login route
+		from("direct:login")
+				.log(LoggingLevel.INFO, "Post Login by email")
+				.bean(loginService, "getLoginByEmail").to("mock:end");
 
 		// venue routes
 		from("direct:getVenues").log(LoggingLevel.INFO, "Getting Venues")
