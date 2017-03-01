@@ -16,7 +16,7 @@ import org.springframework.util.StringUtils;
 @Document(collection = "venues")
 public class Venue implements Serializable, Comparable<Venue> {
 	/**
-   * 
+   *
    */
 	private static final long serialVersionUID = -6165217833968313884L;
 
@@ -24,26 +24,29 @@ public class Venue implements Serializable, Comparable<Venue> {
 	private String id;
 	private String name;
 	private String city;
+	private String email;
 	private Integer capacity;
 	private List<PerformanceType> accomodations;
 
 	public Venue() {
 	}
 
-	public Venue(String name, String city, Integer capacity,
+	public Venue(String name, String city, String email, Integer capacity,
 			List<PerformanceType> accomodations) {
 		super();
 		this.name = name;
 		this.city = city;
+		this.email = email;
 		this.capacity = capacity;
 		this.accomodations = accomodations;
 	}
 
-	public Venue(String name, String city, Integer capacity,
+	public Venue(String name, String city, String email, Integer capacity,
 			PerformanceType... accomodations) {
 		super();
 		this.name = name;
 		this.city = city;
+		this.email = email;
 		this.capacity = capacity;
 		this.accomodations = new ArrayList<PerformanceType>();
 		for (PerformanceType type : accomodations) {
@@ -73,6 +76,14 @@ public class Venue implements Serializable, Comparable<Venue> {
 
 	public void setCity(String city) {
 		this.city = city;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public Integer getCapacity() {

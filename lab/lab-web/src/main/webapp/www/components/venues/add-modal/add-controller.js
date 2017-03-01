@@ -17,6 +17,7 @@ angular.module('aceConcerts.components.venues.add.controller', [
     vm.venue = {
      name: null,
      city: null,
+     email: null,
      capacity: null,
      accomodations: []
     };
@@ -31,7 +32,7 @@ angular.module('aceConcerts.components.venues.add.controller', [
 
     vm.create = function () {
       var v = vm.venue;
-      if (v.name && v.city && v.capacity && v.accomodations.length > 0) {
+      if (v.name && v.city && v.email && v.capacity && v.accomodations.length > 0) {
         $uibModalInstance.close(vm.venue);
       } else {
         vm.showAlert = true;
