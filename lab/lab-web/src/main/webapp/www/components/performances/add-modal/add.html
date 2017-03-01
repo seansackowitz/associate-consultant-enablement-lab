@@ -9,9 +9,11 @@
         <select class="form-control" ng-model="add.selectedVenue"
           ng-options="venue as venue.name for venue in add.venues" ng-change="add.getPerformanceTypes()"></select>
 
-
         <label>Performer Name</label>
         <input class="form-control" ng-model="add.performance.performer.name">
+
+        <label>Email</label>
+        <input type="email" class="form-control" ng-model="add.performance.email">
 
         <label>Performance Type</label>
         <select class="form-control" ng-model="add.selectedType" ng-change="add.setPerformanceType()"
@@ -19,9 +21,6 @@
 
         <label>Description</label>
         <textarea class="form-control" ng-model="add.performance.performer.description"></textarea>
-
-        <label>Email</label>
-        <input type="email" class="form-control" ng-model="add.performance.email">
 
         <div class="form-group">
             <label>Open Date and Time</label>
