@@ -72,17 +72,17 @@ public class CamelServicesTest {
 	Performer performer2 = new Performer("New York City Ballet",
 			"fancy dancers", PerformanceType.BALLET);
 
-	Venue venue1 = new Venue("Madison Square Garden", "New York City", 10000,
-			PerformanceType.BAND, PerformanceType.COMIC,
+	Venue venue1 = new Venue("Madison Square Garden", "New York City",
+			"rh@rh.com", 10000, PerformanceType.BAND, PerformanceType.COMIC,
 			PerformanceType.ORCHESTRA);
-	Venue venue2 = new Venue("Lincoln Square", "New York City", 5000,
-			PerformanceType.BALLET);
+	Venue venue2 = new Venue("Lincoln Square", "New York City", "rh@rh.com",
+			5000, PerformanceType.BALLET);
 
-	BookingRequest request1 = new BookingRequest(venue1.getName(),
+	BookingRequest request1 = new BookingRequest(venue1.getName(), "rh@rh.com",
 			Date.valueOf("2016-06-01"), Date.valueOf("2016-06-02"), performer1);
-	BookingRequest request2 = new BookingRequest(venue2.getName(),
+	BookingRequest request2 = new BookingRequest(venue2.getName(), "rh@rh.com",
 			Date.valueOf("2016-06-01"), Date.valueOf("2016-06-02"), performer2);
-	BookingRequest request3 = new BookingRequest(venue1.getName(),
+	BookingRequest request3 = new BookingRequest(venue1.getName(), "rh@rh.com",
 			Date.valueOf("2016-06-01"), Date.valueOf("2016-06-02"), performer2);
 
 	Booking book1 = new Booking(request1);

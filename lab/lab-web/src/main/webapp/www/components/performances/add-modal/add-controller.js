@@ -19,6 +19,7 @@ angular.module('aceConcerts.components.performances.add.controller', [
          description: null,
          type: null
        },
+       email: null,
        open: null,
        close: null
     };
@@ -75,7 +76,7 @@ angular.module('aceConcerts.components.performances.add.controller', [
 
     vm.request = function () {
       var p = vm.performance;
-      if (p.venueName && p.performer.name && p.performer.type && p.open && p.close) {
+      if (p.venueName && p.performer.name && p.performer.type && p.email && p.open && p.close) {
         $uibModalInstance.close(vm.performance);
       } else {
         vm.showAlert = true;

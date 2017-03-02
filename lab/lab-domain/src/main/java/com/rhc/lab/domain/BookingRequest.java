@@ -12,11 +12,12 @@ import java.util.Date;
 public class BookingRequest implements Serializable {
 
 	/**
-   * 
+   *
    */
 	private static final long serialVersionUID = 1086652316465244736L;
 
 	private String venueName;
+	private String email;
 	private Date open;
 	private Date close;
 	private Performer performer;
@@ -25,10 +26,11 @@ public class BookingRequest implements Serializable {
 		super();
 	}
 
-	public BookingRequest(String venueName, Date open, Date close,
-			Performer performer) {
+	public BookingRequest(String venueName, String email, Date open,
+			Date close, Performer performer) {
 		super();
 		this.venueName = venueName;
+		this.email = email;
 		this.open = open;
 		this.close = close;
 		this.performer = performer;
@@ -40,6 +42,14 @@ public class BookingRequest implements Serializable {
 
 	public void setVenueName(String venueName) {
 		this.venueName = venueName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public Date getOpen() {
@@ -72,8 +82,9 @@ public class BookingRequest implements Serializable {
 
 	@Override
 	public String toString() {
-		return "BookingRequest [venueName=" + venueName + ", open=" + open
-				+ ", close=" + close + ", performer=" + performer + "]";
+		return "BookingRequest [venueName=" + venueName + ", email=" + email
+				+ ", open=" + open + ", close=" + close + ", performer="
+				+ performer + "]";
 	}
 
 }
