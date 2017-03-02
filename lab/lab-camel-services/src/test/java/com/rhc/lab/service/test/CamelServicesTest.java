@@ -43,7 +43,6 @@ import com.rhc.lab.domain.Performer;
 import com.rhc.lab.domain.Venue;
 import com.rhc.lab.domain.Login;
 
-
 @SuppressWarnings("deprecation")
 @RunWith(CamelSpringJUnit4ClassRunner.class)
 @BootstrapWith(CamelTestContextBootstrapper.class)
@@ -69,7 +68,6 @@ public class CamelServicesTest {
 	@EndpointInject(uri = "mock:end")
 	protected MockEndpoint mockEnd;
 
-
 	@Produce(uri = "direct:getBookings")
 	protected ProducerTemplate template1;
 
@@ -94,9 +92,9 @@ public class CamelServicesTest {
 	Booking book1 = new Booking(request1);
 	Booking book2 = new Booking(request2);
 
-//	Login login1 = new Login("rhc@redhat.com", "123");
+	Login login1 = new Login("rhc@redhat.com", "123");
 	Login login2 = new Login("shadowMan@redhat.com", "123456");
-	//
+	
 	RouteBuilder testRoutes;
 
 	@Before
@@ -106,20 +104,43 @@ public class CamelServicesTest {
 		MockEndpoint.resetMocks(camelContext);
 	}
 
+	@Ignore
 	@Test
-	public void shouldAcceptValidLogin() throws InterruptedException{
+	public void shouldRejectInvalidLogin() throws InterruptedException {
+		// Given an invalid email and password
+		mockEnd.expectedMessageCount(1);
+
+		// when I check my login
+		template1.sendBody("direct:login", login1);
+
+		// then I expect a failure message to return
+		mockEnd.assertIsSatisfied();
+		Exchange exchange = mockEnd.getExchanges().get(0);
+		Message message = exchange.getIn();
+		String loginMsg = message.getBody(String.class);
+		Assert.assertEquals("Rejected login failure", "Login Fail", loginMsg);
+	}
+
+	@Test
+	public void shouldAcceptValidLogin() throws InterruptedException {
+
+		loginDao.save(login2);
+
 		// Given a valid email and password
 		mockEnd.expectedMessageCount(1);
+
+		System.out.println("login email " + login2.getEmail());
+		System.out.println("login pw " + login2.getPassword());
 
 		// when I check my login
 		template1.sendBody("direct:login", login2);
 
-		// then I expect a success status to return
+		// then I expect a success message to return
 		mockEnd.assertIsSatisfied();
 		Exchange exchange = mockEnd.getExchanges().get(0);
 		Message message = exchange.getIn();
-		String loginEmail = message.getBody(String.class);
-		Assert.assertEquals("Did return expect values", "shadowMan@redhat.com", loginEmail);
+		String loginMsg = message.getBody(String.class);
+		Assert.assertEquals("Accepted login", "Login Success", loginMsg);
 	}
 
 	@Test

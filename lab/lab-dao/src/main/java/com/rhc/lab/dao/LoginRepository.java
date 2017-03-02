@@ -20,12 +20,11 @@ public interface LoginRepository
 			PagingAndSortingRepository<Login, String> {
 
 	/**
-	 * Function returns a list of Logins by attribute "email" (expected return
-	 * is list size of 1)
+	 * Function returns a Login object by attribute "email"
 	 * 
 	 * @param email
 	 * @return
 	 */
-	public List<Login> findByEmail(String email);
+	public Login findByEmail(String email);
 
 }

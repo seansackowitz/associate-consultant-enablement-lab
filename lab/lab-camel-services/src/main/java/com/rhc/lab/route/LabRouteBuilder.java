@@ -19,7 +19,9 @@ public class LabRouteBuilder extends RouteBuilder {
 
 	@Autowired
 	BookingRequestService requestService;
-	LoginService loginRequestService;
+
+	@Autowired
+	LoginService loginService;
 
 	@Resource(name = "localDecisionService")
 	LocalStatelessDecisionService localDecisionService;
@@ -42,13 +44,13 @@ public class LabRouteBuilder extends RouteBuilder {
 						constant("Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers"))
 				.setHeader("Allow", constant("GET, OPTIONS, POST, PATCH"));
 
-		rest("/login").post().consumes("application/json").type(Login.class)
-				.produces("application/json").to("direct:login");
-		// get().param().type(RestParamType.query).name("email")
-		// 	.endParam().param().type(RestParamType.query).name("password")
-		// 	.consumes("application/json").type(Login.class)
-		// 	.produces("application/json").to("direct:newLogin");
-		//
+		rest("/login").post()
+				.consumes("application/json").type(Login.class)
+				.produces("text/xml").to("direct:login");
+//		.post()
+//		.consumes("application/json").type(Venue.class)
+//		.produces("application/json").to("direct:newVenue")
+
 		rest("/bookings")
 				.verb("options")
 				.route()
@@ -126,8 +128,9 @@ public class LabRouteBuilder extends RouteBuilder {
 
 		// login route
 		from("direct:login")
-				.log(LoggingLevel.INFO, "Post Login by email")
-				.bean(loginService, "getLoginByEmail").to("mock:end");
+				.log(LoggingLevel.INFO,
+						"Post success or failure message for login")
+				.bean(loginService, "authenticateUser").to("mock:end");
 
 		// venue routes
 		from("direct:getVenues").log(LoggingLevel.INFO, "Getting Venues")

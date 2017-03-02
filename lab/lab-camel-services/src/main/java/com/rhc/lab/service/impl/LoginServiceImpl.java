@@ -1,11 +1,7 @@
 package com.rhc.lab.service.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.annotation.Resource;
 
-import org.apache.camel.Body;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -15,13 +11,13 @@ import com.rhc.lab.domain.Login;
 import com.rhc.lab.service.LoginService;
 
 /**
- *
+ * 
  * This service is used by Camel to execute rules and call saves in the various
  * DAO repositories.
- *
+ * 
  */
 
-@Service("loginRequestService")
+@Service("loginService")
 public class LoginServiceImpl implements LoginService {
 
 	private static final Logger logger = LoggerFactory
@@ -39,47 +35,33 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	/**
-	 * Builds session that is needed for the rules session.
-	 *
-	 * @param request
-	 * @return
-	 * @throws Exception
+	 * Check if db contains login and if login is valid
+	 * 
+	 * @param login
 	 */
 	@Override
-	public List<Object> buildSession(@Body Login login) throws Exception {
-		// collect all the relevant data for the ksession
-		List<Object> facts = collectSingleLoginForSession(login);
-		// post the facts to the body of the exchange
-		// put on the in so we do not lose the headers
-		return facts;
-	}
+	public String authenticateUser(Login login) {
+		
+//		logger.info("login email: " + login.toString());
+		
+		String loginMsg;
+		// find login by email
+		Login foundLogin = loginRepo.findByEmail(login.getEmail());
 
-	/**
-	 * Returns the loginInfo mentioned in the request
-	 *
-	 * @param request
-	 * @return
-	 */
-	@Override
-	public List<Object> collectSingleLoginForSession(Login request) {
-		logger.info("collect login email: " + request.getEmail());
-		List<Login> loginInfo= loginRepo.findByEmail(request.getEmail());
+		// if login is not found return fail message
+		// if login is found check if password correct
+		if (foundLogin == null) {
+			loginMsg = "Login Fail";
+		} else {
+			// if password correct return success message
+			// else if password incorrect return fail message
+			if (login.getPassword() == foundLogin.getPassword()) {
+				loginMsg = "Login Success";
+			} else {
+				loginMsg = "Login Fail";
+			}
+		}
 
-		logger.info("email found:" + loginInfo);
-
-		List<Object> facts = new ArrayList<Object>();
-		facts.addAll(loginInfo);
-		facts.add(request);
-		return facts;
-	}
-
-	/**
-	 * Get login by email. email is found ?
-	 *
-	 * @param id
-	 */
-	@Override
-	public Login getLoginByEmail(String email) {
-		return loginRepo.findByEmail(email);
+		return loginMsg;
 	}
 }

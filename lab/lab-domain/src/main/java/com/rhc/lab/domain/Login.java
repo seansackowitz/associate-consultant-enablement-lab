@@ -98,9 +98,9 @@ public class Login implements Serializable {
 
 	// TODO
 	/**
-	 * Converts user email input to lowercase to check with database
+	 * make check ignore case when checking with database
 	 */
 	// TODO
-	// test email in db should be lowercase
+	// test ignore case
 
 }
