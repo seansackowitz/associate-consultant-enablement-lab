@@ -94,7 +94,7 @@ public class CamelServicesTest {
 
 	Login login1 = new Login("rhc@redhat.com", "123");
 	Login login2 = new Login("shadowMan@redhat.com", "123456");
-	
+
 	RouteBuilder testRoutes;
 
 	@Before
@@ -104,7 +104,6 @@ public class CamelServicesTest {
 		MockEndpoint.resetMocks(camelContext);
 	}
 
-	@Ignore
 	@Test
 	public void shouldRejectInvalidLogin() throws InterruptedException {
 		// Given an invalid email and password

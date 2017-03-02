@@ -103,7 +103,6 @@ public class LoginCucumberRepository implements LoginRepository {
 
 	@Override
 	public Login findByEmail(String email) {
-		System.out.println("email here " + loginRepo.get(email).getEmail());
 		return loginRepo.get(email);
 	}
 

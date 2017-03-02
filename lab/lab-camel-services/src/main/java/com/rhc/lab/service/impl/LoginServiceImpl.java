@@ -41,9 +41,9 @@ public class LoginServiceImpl implements LoginService {
 	 */
 	@Override
 	public String authenticateUser(Login login) {
-		
-//		logger.info("login email: " + login.toString());
-		
+
+		// logger.info("login email: " + login.toString());
+
 		String loginMsg;
 		// find login by email
 		Login foundLogin = loginRepo.findByEmail(login.getEmail());

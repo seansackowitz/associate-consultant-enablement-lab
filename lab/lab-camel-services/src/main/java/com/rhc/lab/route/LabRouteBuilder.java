@@ -44,12 +44,11 @@ public class LabRouteBuilder extends RouteBuilder {
 						constant("Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers"))
 				.setHeader("Allow", constant("GET, OPTIONS, POST, PATCH"));
 
-		rest("/login").post()
-				.consumes("application/json").type(Login.class)
+		rest("/login").post().consumes("application/json").type(Login.class)
 				.produces("text/xml").to("direct:login");
-//		.post()
-//		.consumes("application/json").type(Venue.class)
-//		.produces("application/json").to("direct:newVenue")
+		// .post()
+		// .consumes("application/json").type(Venue.class)
+		// .produces("application/json").to("direct:newVenue")
 
 		rest("/bookings")
 				.verb("options")
