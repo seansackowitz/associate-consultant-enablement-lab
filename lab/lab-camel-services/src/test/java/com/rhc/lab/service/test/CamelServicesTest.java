@@ -104,6 +104,7 @@ public class CamelServicesTest {
 		MockEndpoint.resetMocks(camelContext);
 	}
 
+	@Ignore
 	@Test
 	public void shouldRejectInvalidLogin() throws InterruptedException {
 		// Given an invalid email and password
@@ -127,9 +128,6 @@ public class CamelServicesTest {
 
 		// Given a valid email and password
 		mockEnd.expectedMessageCount(1);
-
-		System.out.println("login email " + login2.getEmail());
-		System.out.println("login pw " + login2.getPassword());
 
 		// when I check my login
 		template1.sendBody("direct:login", login2);

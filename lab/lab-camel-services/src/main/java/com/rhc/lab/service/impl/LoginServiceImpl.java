@@ -51,14 +51,15 @@ public class LoginServiceImpl implements LoginService {
 		// if login is not found return fail message
 		// if login is found check if password correct
 		if (foundLogin == null) {
-			loginMsg = "Login Fail";
+			loginMsg = "Login Fail null";
 		} else {
+			System.out.println("found " + foundLogin.getEmail());
 			// if password correct return success message
 			// else if password incorrect return fail message
-			if (login.getPassword() == foundLogin.getPassword()) {
+			if (login.getPassword().equals(foundLogin.getPassword())) {
 				loginMsg = "Login Success";
 			} else {
-				loginMsg = "Login Fail";
+				loginMsg = "Login Fail pw" + foundLogin.getPassword();
 			}
 		}
 
