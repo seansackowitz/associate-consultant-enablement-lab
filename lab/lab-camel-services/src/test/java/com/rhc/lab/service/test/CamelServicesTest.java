@@ -104,7 +104,6 @@ public class CamelServicesTest {
 		MockEndpoint.resetMocks(camelContext);
 	}
 
-	@Ignore
 	@Test
 	public void shouldRejectInvalidLogin() throws InterruptedException {
 		// Given an invalid email and password
