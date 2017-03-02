@@ -9,6 +9,7 @@ angular.module('aceConcerts', [
     'ui.bootstrap.datetimepicker',
     'ui.multiselect',
     'angularSpinner',
+    'angularMoment',
     'aceConcerts.sections.login',
     'aceConcerts.sections.home',
     'aceConcerts.components.performances',

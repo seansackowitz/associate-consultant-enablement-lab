@@ -29,16 +29,16 @@ angular.module('aceConcerts.components.performances.controller', [
 
     activate();
 
-    $interval(activate, 3000);
+    $interval(activate, 3000000);
 
     function activate() {
       return concertService.getBookings()
-        .then(function(bookings) {
+        .then(function (bookings) {
           vm.bookings = bookings;
         });
     };
 
-    vm.openAddBookingModal = function() {
+    vm.openAddBookingModal = function () {
       var modalInstance = $uibModal.open(
         {
           animation: true,
@@ -55,6 +55,30 @@ angular.module('aceConcerts.components.performances.controller', [
 
     };
 
+
+    vm.openUpdateBookingModal = function (performance) {
+      var modalInstance = $uibModal.open(
+        {
+          animation: true,
+          templateUrl: 'www/components/performances/update-modal/update.html',
+          controller: 'UpdatePerformanceCtrl as update',
+          size: 'lg',
+          resolve: {
+            items: function() {
+              return performance;
+            }
+          }
+        }
+      );
+
+      modalInstance.result
+        .then(addBooking, function () {
+          $log.info('Modal dismissed at: ' + new Date());
+        });
+
+    };
+
+
     function addBooking(newPerformance) {
       usSpinnerService.spin('spinner-book');
 
@@ -62,11 +86,16 @@ angular.module('aceConcerts.components.performances.controller', [
 
       return perf
         .then(activate)
-        .then(function() {
+        .then(function () {
           return usSpinnerService.stop('spinner-book');
         })
         .then(getBookingVal);
     };
+
+    // TODO: 
+    function updateBooking(performance) {
+
+    }
 
 
     vm.openBookingSuccessModal = function () {
@@ -80,19 +109,17 @@ angular.module('aceConcerts.components.performances.controller', [
       )
     };
 
-      vm.openBookingFailureModal = function () {
-        var modalInstanceFailure = $uibModal.open(
-          {
-            animation: true,
-            templateUrl: 'www/components/performances/failure-modal/failure.html',
-            controller: 'FailurePerformanceCtrl as failure',
-            size: 'lg'
-          }
-        )
-      };
-
-
+    vm.openBookingFailureModal = function () {
+      var modalInstanceFailure = $uibModal.open(
+        {
+          animation: true,
+          templateUrl: 'www/components/performances/failure-modal/failure.html',
+          controller: 'FailurePerformanceCtrl as failure',
+          size: 'lg'
+        }
+      )
+    };
 
     console.log('Performances Controller Created');
-
-});
+    console.log(vm.bookings);
+  });

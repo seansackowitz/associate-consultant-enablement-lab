@@ -1,0 +1,66 @@
+<div class="modal-lg update-lg" id="update">
+  <form>
+    <div class="modal-header">
+        <h3 class="modal-title">Update {{update.performance.performer.name}} at {{update.performance.venueName}}</h3>
+    </div>
+    <div class="modal-body">
+
+        <label>Performer Name</label>
+        <input class="form-control" ng-model="update.performance.performer.name">
+
+
+        <label>Performance Type</label>
+        <select class="form-control" ng-model="update.selectedType" ng-change="update.setPerformanceType()"
+          ng-options="accomodation as accomodation.label for accomodation in update.accomodations"></select>
+
+
+        <label>Description</label>
+        <textarea class="form-control" ng-model="update.performance.performer.description"></textarea>
+
+
+        <div class="form-group">
+            <label>Open Date and Time</label>
+              <p class="input-group">
+                <input type="text" class="form-control"
+                value="update.performance.openDate"
+                datetime-picker="MM/dd/yyyy HH:mm"
+                ng-model="update.performance.openDate"
+                ng-change="update.performance.updateMoment()"
+                is-open="update.openDatePop.opened"
+                datepicker-options="update.openDatePop.dateOptions"/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default"
+                    ng-click="update.openDatePop.open()">
+                    <i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </p>
+            </div>
+
+        <div class="form-group">
+            <label>Close Date and Time</label>
+              <p class="input-group">
+                <input type="text" class="form-control"
+                datetime-picker="MM/dd/yyyy HH:mm"
+                ng-model="update.performance.closeDate"
+                is-open="update.closeDatePop.opened"
+                datepicker-options="update.closeDatePop.dateOptions"/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default"
+                    ng-click="update.closeDatePop.open()">
+                    <i class="glyphicon glyphicon-calendar"></i></button>
+                </span>
+              </p>
+            </div>
+
+
+    </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-lg btn-primary" type="submit" ng-click="update.request()">Request</button>
+        <button class="btn btn-lg btn-warning" type="cancel" ng-click="update.cancel()">Cancel</button>
+    </div>
+    <div class="alert alert-danger" ng-show="update.showAlert">
+      <strong>Invalid!</strong> Must fill out all fields except description.
+    </div>
+  </form>
+</div>

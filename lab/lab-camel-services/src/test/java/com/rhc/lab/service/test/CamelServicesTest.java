@@ -201,7 +201,7 @@ public class CamelServicesTest {
 		mockEnd.expectedMessageCount(1);
 
 		// when I send a message with the booking request
-		template1.sendBody("direct:newBooking", request1);
+		template1.sendBody("direct:newBooking", book1);
 
 		// then I expect to recieve a message back with a string id
 		mockEnd.assertIsSatisfied();
@@ -289,7 +289,17 @@ public class CamelServicesTest {
 	@Ignore
 	@Test
 	public void shouldUpdateABooking() {
-		// TODO: Write test for updating bookings
+		book1 = bookingDao.save(book1);
+		book1.setVenueName("Red Hat Office");
+		mockEnd.expectedMessageCount(1);
+
+		template1.sendBodyAndHeader("direct:updateBooking", "", "", book1);
+		//mockEnd.assertIsSatisfied();
+
+		Assert.assertTrue(StringUtils.isNullOrEmpty(mockEnd.getExchanges()
+				.get(0).getIn().getBody(String.class)));
+
+		Assert.assertEquals("Venue Name Updated", "Red Hat Office", book1.getVenueName());;
 	}
 
 	@Test

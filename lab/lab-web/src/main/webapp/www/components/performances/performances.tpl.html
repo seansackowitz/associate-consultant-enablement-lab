@@ -7,7 +7,7 @@
     </div>
     <div class="row top5" ng-repeat="booking in performances.bookings">
 
-        <a class="list-group-item">
+        <a ng-click="performances.openUpdateBookingModal(booking)" class="list-group-item">
           <h4 class="list-group-item-heading">{{booking.performer.name}}</h4>
           <p class="list-group-item-text">{{booking.venueName}}&nbsp;-&nbsp;{{booking.open}}</p>
         </a>

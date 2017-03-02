@@ -21,6 +21,10 @@ angular.module('aceConcerts.core.concert.service', [])
           });
       }
 
+      function updateBooking(booking) {
+        return bookingsEndpoint.
+      }
+
       function deleteBooking(newBooking) {
         return $q.when({status: 'success'});
       }
@@ -65,6 +69,7 @@ angular.module('aceConcerts.core.concert.service', [])
       return {
         addBooking: addBooking,
         deleteBooking: deleteBooking,
+        updateBooking: updateBooking,
         getBookings: getBookings,
         addVenue: addVenue,
         deleteVenue: deleteVenue,
