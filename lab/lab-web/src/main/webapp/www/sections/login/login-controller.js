@@ -9,15 +9,14 @@ angular.module('aceConcerts.sections.login.controller', [
 
       // Dummy default data for login
       var vm = this;
-      vm.email = 'shadowMan@redhat.com';
-      vm.password = 123456;
 
       vm.showAlert = false;
 
       vm.submit = function() {
-        if (vm.email == 'shadowMan@redhat.com' && vm.password == 123456) {
+        if (vm.email != null && vm.password != null) {
           userService.login(vm.email, vm.password)
-          .then(function() {
+          .then(function(res) {
+              // console.log(res.join(""));
             return $state.go('home');
           });
         }
